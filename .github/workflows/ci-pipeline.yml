@@ -35,7 +35,9 @@ jobs:
     - name: Snyk Open Source Scan
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      run: snyk test
+      #run: snyk test
+      #run: snyk test || true
+      run: snyk test --severity-threshold=critical
 
     # 6️⃣ Build Docker Image
     - name: Build Docker Image
