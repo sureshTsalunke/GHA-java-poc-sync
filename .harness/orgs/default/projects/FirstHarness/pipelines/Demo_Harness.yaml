@@ -38,3 +38,10 @@ pipeline:
                   spec:
                     shell: Sh
                     command: echo "Hello Harness"
+              - step:
+                  type: Run
+                  name: Compile
+                  identifier: Compile
+                  spec:
+                    shell: Sh
+                    command: mvn clean compile
