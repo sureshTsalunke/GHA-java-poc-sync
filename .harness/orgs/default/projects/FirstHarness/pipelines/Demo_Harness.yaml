@@ -40,10 +40,28 @@ pipeline:
                     command: echo "Hello Harness"
               - step:
                   type: Run
-                  name: Compile
-                  identifier: Compile
+                  name: Build with Maven
+                  identifier: Build_Maven
                   spec:
                     connectorRef: account.DockerHubReg
                     image: maven:3.9.6-eclipse-temurin-17
                     shell: Sh
                     command: mvn clean compile
+              - step:
+                  type: Run
+                  name: Test
+                  identifier: Test
+                  spec:
+                    connectorRef: account.DockerHubReg
+                    image: maven:3.9.6-eclipse-temurin-17
+                    shell: Sh
+                    command: mvn clean test
+              - step:
+                  type: Run
+                  name: Artifactory
+                  identifier: Artifactory
+                  spec:
+                    connectorRef: account.DockerHubReg
+                    image: maven:3.9.6-eclipse-temurin-17
+                    shell: Sh
+                    command: mvn clean Artifactory
