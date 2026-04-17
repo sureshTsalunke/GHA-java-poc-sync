@@ -58,10 +58,10 @@ pipeline:
                     command: mvn clean test
               - step:
                   type: Run
-                  name: Artifactory
+                  name: Build Artifactory
                   identifier: Artifactory
                   spec:
                     connectorRef: account.DockerHubReg
                     image: maven:3.9.6-eclipse-temurin-17
                     shell: Sh
-                    command: mvn clean Artifactory
+                    command: mvn clean install
