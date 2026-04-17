@@ -1,0 +1,40 @@
+pipeline:
+  name: Demo Harness
+  identifier: Demo_Harness
+  projectIdentifier: FirstHarness
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.GitHubconecter
+        repoName: GHA-java-poc-sync
+        build: <+input>
+  stages:
+    - stage:
+        name: Maven-Build
+        identifier: MavenBuild
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Hello Harness
+                  identifier: Hello_Harness
+                  spec:
+                    shell: Sh
+                    command: echo "Hello Harness"
